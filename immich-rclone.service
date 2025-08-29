@@ -1,0 +1,19 @@
+[Unit]
+Description=Rclone mount for Immich B2 storage
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=IMMICH_DIR=/home/dietpi/immich
+User=dietpi
+Group=dietpi
+ExecStartPre=/bin/mkdir -p ${IMMICH_DIR}/bb
+ExecStart=/usr/bin/rclone mount b2:rick-private-photos ${IMMICH_DIR}/bb --vfs-cache-mode full --allow-other
+ExecStop=/bin/fusermount -u ${IMMICH_DIR}/bb
+Restart=on-failure
+RestartSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
