@@ -9,7 +9,7 @@ Environment=IMMICH_DIR=/home/dietpi/immich
 User=dietpi
 Group=dietpi
 ExecStartPre=/bin/mkdir -p ${IMMICH_DIR}/bb
-ExecStart=/usr/bin/rclone mount b2:rick-private-photos ${IMMICH_DIR}/bb --vfs-cache-mode full --allow-other
+ExecStart=/usr/bin/rclone mount b2:rick-private-photos ${IMMICH_DIR}/bb --vfs-cache-mode full --allow-other --allow-non-empty
 ExecStop=/bin/fusermount -u ${IMMICH_DIR}/bb
 Restart=on-failure
 RestartSec=5
