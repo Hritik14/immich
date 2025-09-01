@@ -1,0 +1,19 @@
+[Unit]
+Description=Rclone mount for %i
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=MOUNT_DIR=/home/dietpi/immich/mounts/%i
+User=dietpi
+Group=dietpi
+ExecStartPre=/bin/mkdir -p ${MOUNT_DIR}
+ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --vfs-cache-mode full --vfs-cache-max-size 10G --allow-other --allow-non-empty
+ExecStop=/bin/fusermount -u ${MOUNT_DIR}/bb
+Restart=on-failure
+RestartSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target

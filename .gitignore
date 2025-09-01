@@ -2,3 +2,9 @@ bb
 bb2
 postgres
 thumbs
+drive
+mounts
+*.swa
+*.swb
+*.swp
+*\~

@@ -1,6 +1,14 @@
 [Unit]
 Description=Immich Application Stack
-Requires=immich-rclone.service immich-docker.service
+Requires=immich-rclone.service \
+immich-rclone@alpha.service \
+immich-rclone@beta.service  \
+immich-rclone@gamma.service \
+immich-rclone@delta.service \
+immich-rclone@zeta.service  \
+immich-rclone@xx8.service   \
+immich-rclone@elf.service   \
+immich-docker.service       \
 After=immich-rclone.service immich-docker.service
 
 [Install]
