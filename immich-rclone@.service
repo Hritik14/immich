@@ -9,10 +9,9 @@ Environment=MOUNT_DIR=/home/dietpi/immich/mounts/%i
 User=dietpi
 Group=dietpi
 ExecStartPre=/bin/mkdir -p ${MOUNT_DIR}
-ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --vfs-cache-mode full --vfs-cache-min-free-space 10G --allow-other --allow-non-empty
+ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --allow-other --vfs-cache-mode minimal
+# --vfs-cache-mode full --vfs-cache-min-free-space 10G
 ExecStop=/bin/fusermount -u ${MOUNT_DIR}/bb
-Restart=on-failure
-RestartSec=5
 KillMode=process
 
 [Install]

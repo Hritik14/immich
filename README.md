@@ -6,6 +6,11 @@ edit ``/etc/alloy/config.alloy`` and append ``alloy.config`` contents
 
 copy systemd files to ``/etc/systemd/system/``
 
+```
+sudo cp immich*service /etc/systemd/system/
+sudo cp immich.target /etc/systemd/system/
+```
+
 ## rclone
 
 ``rclone config`` -> add one config

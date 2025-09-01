@@ -1,15 +1,15 @@
 [Unit]
 Description=Immich Docker Compose Service
-Requires=docker.service immich-rclone.service
-After=docker.service immich-rclone.service
+Requires=docker.service immich-rclone@xx8.service
+After=docker.service immich-rclone@xx8.service
+BindsTo=immich-rclone@xx8.service
 
 [Service]
-Type=oneshot
-RemainAfterExit=yes
+Type=simple
 Environment=IMMICH_DIR=/home/dietpi/immich
-ExecStart=/usr/bin/docker compose -f ${IMMICH_DIR}/docker-compose.yml up -d
+ExecStart=/usr/bin/docker compose -f ${IMMICH_DIR}/docker-compose.yml up
 ExecStop=/usr/bin/docker compose -f ${IMMICH_DIR}/docker-compose.yml down
-TimeoutStartSec=0
+TimeoutStartSec=5min
 
 [Install]
 WantedBy=multi-user.target

@@ -17,9 +17,9 @@ services:
     #   file: hwaccel.transcoding.yml
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
-      # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
-      - ${UPLOAD_LOCATION}:/data
-      - ${DRIVE_LOCATION}:/home/user/drive:ro,shared
+      - ./mounts/xx8/immich:/data:rw
+      - ./mounts/:/home/user/drive:ro
+      - ./empty:/home/user/drive/xx8/immich # ensure uploads don't go to external lib
       - ${THUMB_LOCATION}:/data/thumbs
       - /etc/localtime:/etc/localtime:ro
     env_file:

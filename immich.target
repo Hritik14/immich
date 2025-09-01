@@ -8,7 +8,7 @@ immich-rclone@delta.service \
 immich-rclone@zeta.service  \
 immich-rclone@xx8.service   \
 immich-rclone@elf.service   \
-immich-docker.service       \
+immich-docker.service
 After=immich-rclone.service immich-docker.service
 
 [Install]
