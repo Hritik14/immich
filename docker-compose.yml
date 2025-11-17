@@ -18,18 +18,19 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       - ./mounts/xx8/immich:/data:rw
+      - /home/hritik/immich/thumbs_local/:/data/immich/thumbs:rw # thumbs on ssd
       - ./mounts/:/home/user/drive:ro
-      - ./empty:/home/user/drive/xx8/immich # ensure uploads don't go to external lib
-      - ${THUMB_LOCATION}:/data/thumbs
+      - ./empty:/home/user/drive/xx8/immich # ensure uploads don't go to external lib, NOTE: Do this in webui too at library -> exclude imports
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
     ports:
-      - '127.0.0.1:2283:2283'
+      #      - '127.0.0.1:2283:2283'
+      - '2283:2283'
     depends_on:
       - redis
       - database
-    restart: always
+    restart: no
     healthcheck:
       disable: false
 

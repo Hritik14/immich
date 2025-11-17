@@ -6,7 +6,7 @@ BindsTo=immich-rclone@xx8.service
 
 [Service]
 Type=simple
-Environment=IMMICH_DIR=/home/dietpi/immich
+Environment=IMMICH_DIR=/home/hritik/Projects/immich/immich
 ExecStart=/usr/bin/docker compose -f ${IMMICH_DIR}/docker-compose.yml up
 ExecStop=/usr/bin/docker compose -f ${IMMICH_DIR}/docker-compose.yml down
 TimeoutStartSec=5min

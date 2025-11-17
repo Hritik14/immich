@@ -5,13 +5,13 @@ Wants=network-online.target
 
 [Service]
 Type=simple
-Environment=MOUNT_DIR=/home/dietpi/immich/mounts/%i
-User=dietpi
-Group=dietpi
+Environment=CACHE_DIR=/home/hritik/Media/cache/rclone
+Environment=MOUNT_DIR=/home/hritik/Projects/immich/immich/mounts/%i
+User=hritik
+Group=hritik
 ExecStartPre=/bin/mkdir -p ${MOUNT_DIR}
-ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --allow-other --vfs-cache-mode minimal
-# --vfs-cache-mode full --vfs-cache-min-free-space 10G
-ExecStop=/bin/fusermount -u ${MOUNT_DIR}/bb
+ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --allow-other --cache-dir ${CACHE_DIR} --vfs-cache-mode full --vfs-cache-min-free-space 10G
+ExecStop=/bin/fusermount -u ${MOUNT_DIR}/%i
 KillMode=process
 
 [Install]

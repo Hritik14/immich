@@ -1,0 +1,18 @@
+[Unit]
+Description=Rclone mount for %i shared drives
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=CACHE_DIR=/home/hritik/Media/cache/rclone
+Environment=MOUNT_DIR=/home/hritik/Projects/immich/immich/mounts/%i-shared
+User=hritik
+Group=hritik
+ExecStartPre=/bin/mkdir -p ${MOUNT_DIR}
+ExecStart=/usr/bin/rclone mount %i: ${MOUNT_DIR} --allow-other --cache-dir ${CACHE_DIR} --vfs-cache-mode full --vfs-cache-min-free-space 10G --drive-shared-with-me
+ExecStop=/bin/fusermount -u ${MOUNT_DIR}/%i-shared
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
