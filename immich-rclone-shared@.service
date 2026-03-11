@@ -4,7 +4,7 @@ After=network-online.target
 Wants=network-online.target
 
 [Service]
-Type=simple
+Type=notify
 Environment=CACHE_DIR=/home/hritik/Media/cache/rclone
 Environment=MOUNT_DIR=/home/hritik/Projects/immich/immich/mounts/%i-shared
 User=hritik
